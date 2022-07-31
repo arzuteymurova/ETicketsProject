@@ -1,0 +1,47 @@
+﻿@model ActorViewModel
+
+@{
+    ViewBag.Title = "List of Actors";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th>Profile Picture</th>
+                    <th>Full Name</th>
+                    <th>Bio</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Actors)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            <img class="rounded-circle" src="@item.ProfilePictureUrl" alt="@item.FullName" style="max-width: 150px" />
+                        </td>
+                        <td class="align-middle">
+                            @item.FullName
+                        </td>
+                        <td class="align-middle">
+                            @item.Bio
+                        </td>
+                        <td class="align-middle">
+                            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i>Edit </a> |
+                            <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye"></i>Details </a> |
+                            <a class="btn btn-danger text-white" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Delete </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+<div class="text-white" style="position:fixed;bottom:70px;right:40px">
+    <a asp-controller="Actors" asp-action="Create" class="btn btn-lg btn-success"><i class="bi bi-plus-circle"></i>Add New</a>
+</div>
+

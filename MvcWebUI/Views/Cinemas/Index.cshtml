@@ -1,0 +1,38 @@
+﻿@model CinemaViewModel
+
+@{
+    ViewBag.Title = "List of Cinemas";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th>Profile Picture</th>
+                    <th>Full Name</th>
+                    <th>Bio</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Cinemas)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            <img class="rounded-circle" src="@item.Logo" alt="@item.Name" style="max-width: 150px" />
+                        </td>
+                        <td class="align-middle">
+                            @item.Name
+                        </td>
+                        <td class="align-middle">
+                            @item.Description
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
