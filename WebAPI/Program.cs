@@ -9,11 +9,11 @@ using Core.Utilities.Security.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
     .ConfigureContainer<ContainerBuilder>(builder =>
     {
@@ -45,8 +45,11 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddEndpointsApiExplorer();
+
+
 builder.Services.AddSwaggerGen(options =>
 {
+   
     var securitySchema = new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
@@ -72,6 +75,7 @@ builder.Services.AddSwaggerGen(options =>
 
     options.AddSecurityRequirement(securityRequirement);
     options.SwaggerDoc("v1", new OpenApiInfo() { Title = "WebAPI", Version = "v1", Description = "Swagger page for your API" });
+ 
 });
 
 var app = builder.Build();
@@ -80,7 +84,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c=>c.EnableValidator(null));
 }
 
 app.UseHttpsRedirection();
@@ -88,6 +92,8 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseStaticFiles();
 
 app.MapControllers();
 

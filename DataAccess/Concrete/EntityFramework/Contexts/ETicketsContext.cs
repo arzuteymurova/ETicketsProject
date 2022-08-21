@@ -11,14 +11,13 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
 {
     public class ETicketsContext : DbContext
     {
-        // "ConnectionStrings": {
-        //  "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=ETicketsDb;Trusted_Connection=True;MultipleActiveResultSets=true"
-        //},
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ETicketsDb;Trusted_Connection=true");
         }
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<MovieImage> MovieImages { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Actor> Actors { get; set; }
         public DbSet<Producer> Producers { get; set; }

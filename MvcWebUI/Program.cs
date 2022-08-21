@@ -1,24 +1,19 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Business.Abstract;
 using Business.Concrete;
+using Business.DependencyResolvers.Autofac;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<IMovieService,MovieManager>();
-builder.Services.AddSingleton<IMovieDal, EfMovieDal>();
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+    .ConfigureContainer<ContainerBuilder>(builder =>
+    {
+        builder.RegisterModule(new AutofacBusinessModule());
+    });
 
-builder.Services.AddSingleton<ICategoryService, CategoryManager>();
-builder.Services.AddSingleton<ICategoryDal, EfCategoryDal>();
-
-builder.Services.AddSingleton<IActorService, ActorManager>();
-builder.Services.AddSingleton<IActorDal, EfActorDal>();
-
-builder.Services.AddSingleton<IProducerService, ProducerManager>();
-builder.Services.AddSingleton<IProducerDal, EfProducerDal>();
-
-builder.Services.AddSingleton<ICinemaService, CinemaManager>();
-builder.Services.AddSingleton<ICinemaDal, EfCinemaDal>();
 
 
 // Add services to the container.
@@ -35,6 +30,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();

@@ -14,8 +14,9 @@ namespace Business.ValidationRules.FluentValidation
         {
             RuleFor(m => m.Name).NotEmpty();
             RuleFor(m => m.Description).NotEmpty();
-            RuleFor(m=>m.StartDate).NotEmpty();
-            RuleFor(m=>m.EndDate).NotEmpty();
+            RuleFor(m => m.StartDate).NotEmpty().LessThan(DateTime.Now);
+            RuleFor(m => m.EndDate).NotEmpty().LessThan(DateTime.Now);
+            RuleFor(m => m.StartDate).LessThan(m => m.EndDate).When(m => m.EndDate != null);
             RuleFor(m => m.Price).NotEmpty();
         }
     }
