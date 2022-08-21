@@ -22,6 +22,8 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         public DbSet<Actor> Actors { get; set; }
         public DbSet<Producer> Producers { get; set; }
         public DbSet<Cinema> Cinemas { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Customer> CreditCards { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }

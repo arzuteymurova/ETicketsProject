@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class MoviesController : Controller
+    public class MoviesController : ControllerBase
     {
         private readonly IMovieService _movieService;
         public MoviesController(IMovieService movieService)
@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getById/{movieId}")]
+        [HttpGet("getById")]
         public IActionResult GetById(int movieId)
         {
             var result = _movieService.GetMovieDetailsById(movieId);
@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getByActor/{actorId}")]
+        [HttpGet("getMoviesByActorId")]
         public IActionResult GetByActor(int actorId)
         {
             var result = _movieService.GetMovieDetailsByActorId(actorId);
@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getByCategory/{categoryId}")]
+        [HttpGet("getMoviesByCategoryId")]
         public IActionResult GetByCategory(int categoryId)
         {
             var result = _movieService.GetMovieDetailsByCategoryId(categoryId);
@@ -58,7 +58,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getByProducer/{producerId}")]
+        [HttpGet("getByMoviesProducerId")]
         public IActionResult GetByProducer(int producerId)
         {
             var result = _movieService.GetMovieDetailsByProducerId(producerId);
@@ -69,7 +69,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getByCinema/{cinemaId}")]
+        [HttpGet("getMoviesByCinemaId")]
         public IActionResult GetByCinema(int cinemaId)
         {
             var result = _movieService.GetMovieDetailsByCinemaId(cinemaId);

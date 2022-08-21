@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class ActorsController : Controller
+    public class ActorsController : ControllerBase
     {
         private readonly IActorService _actorService;
         public ActorsController(IActorService actorService)
@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyid/{actorId}")]
+        [HttpGet("getbyid")]
         public IActionResult GetById(int actorId)
         {
             var result = _actorService.GetById(actorId);

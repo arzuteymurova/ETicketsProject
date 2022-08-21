@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class CinemasController : Controller
+    public class CinemasController : ControllerBase
     {
         private readonly ICinemaService _cinemaService;
         public CinemasController(ICinemaService cinemaService)
@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyid/{cinemaId}")]
+        [HttpGet("getbyid")]
         public IActionResult GetById(int cinemaId)
         {
             var result = _cinemaService.GetById(cinemaId);

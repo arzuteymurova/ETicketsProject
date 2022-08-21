@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
 
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class MovieImagesController : ControllerBase
     {
-        private IMovieImageService _movieImageService;
+        private readonly IMovieImageService _movieImageService;
 
         public MovieImagesController(IMovieImageService movieImageService)
         {

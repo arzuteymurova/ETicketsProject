@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class CategoriesController : Controller
+    public class CategoriesController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
         public CategoriesController(ICategoryService categoryService)
@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyid/{actorId}")]
+        [HttpGet("getbyid")]
         public IActionResult GetById(int categoryId)
         {
             var result = _categoryService.GetById(categoryId);

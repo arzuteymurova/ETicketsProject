@@ -52,7 +52,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation("movieimage.add,moderator,admin")]
+        //[SecuredOperation("movieimage.add,moderator,admin")]
         [CacheRemoveAspect("IMovieImageService.Get")]
         public IResult Add(IFormFile file, MovieImage movieImage)
         {
@@ -68,7 +68,7 @@ namespace Business.Concrete
 
 
 
-        [SecuredOperation("movieimage.update,moderator,admin")]
+       // [SecuredOperation("movieimage.update,moderator,admin")]
         [CacheRemoveAspect("IMovieImageService.Get")]
         public IResult Update(IFormFile file, MovieImage movieImage)
         {
@@ -81,7 +81,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation("movieimage.delete,moderator,admin")]
+       // [SecuredOperation("movieimage.delete,moderator,admin")]
         [CacheRemoveAspect("IMovieImageService.Get")]
         public IResult Delete(MovieImage movieImage)
         {

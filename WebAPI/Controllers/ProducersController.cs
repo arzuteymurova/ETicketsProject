@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class ProducersController : Controller
+    public class ProducersController : ControllerBase
     {
         private readonly IProducerService _producerService;
         public ProducersController(IProducerService producerService)
@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyid/{producerId}")]
+        [HttpGet("getbyid")]
         public IActionResult GetById(int producerId)
         {
             var result = _producerService.GetById(producerId);
