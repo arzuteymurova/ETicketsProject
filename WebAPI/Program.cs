@@ -49,7 +49,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(options =>
 {
-   
+
     var securitySchema = new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
@@ -75,7 +75,7 @@ builder.Services.AddSwaggerGen(options =>
 
     options.AddSecurityRequirement(securityRequirement);
     options.SwaggerDoc("v1", new OpenApiInfo() { Title = "WebAPI", Version = "v1", Description = "Swagger page for your API" });
- 
+
 });
 
 var app = builder.Build();
@@ -84,8 +84,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c=>c.EnableValidator(null));
+    app.UseSwaggerUI(c => c.EnableValidator(null));
 }
+
+app.ConfigureCustomExceptionMiddleware();
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 
